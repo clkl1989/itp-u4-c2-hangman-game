@@ -43,7 +43,7 @@ def main():
 
             users_guess = _input(line_message)
             try:
-                guess_letter(game, users_guess)
+                game = guess_letter(game, users_guess)
             except InvalidGuessedLetterException:
                 print("\t Your guess is incorrect. Please guess again.")
                 continue
