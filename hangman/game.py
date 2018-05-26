@@ -57,20 +57,20 @@ def _uncover_word(answer_word, masked_word, guessed_letter):
 def guess_letter(game, guessed_letter):
     #1. Return _uncover_word to modify variables inside game
     #2. Replace masked_word with result from #1
+    if game['remaining_misses'] == 0 or game['masked_word'] == game['answer_word']:
+        raise GameFinishedException
     guessed_letter = guessed_letter.lower()
     new_masked_word = _uncover_word(game['answer_word'],game['masked_word'],guessed_letter)
     if game['masked_word'] == new_masked_word:
         game['remaining_misses'] = game['remaining_misses'] - 1
     if game['remaining_misses'] == 0:
         raise GameLostException
-        raise GameFinishedException
         
     game['masked_word'] = new_masked_word
     game['previous_guesses'].append(guessed_letter)
 
     if game['masked_word'] == game['answer_word']:
         raise GameWonException
-        raise GameFinishedException
 
     pass
     
